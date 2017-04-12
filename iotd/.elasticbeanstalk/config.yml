@@ -1,0 +1,17 @@
+branch-defaults:
+  default:
+    environment: iotd-dev
+    group_suffix: null
+global:
+  application_name: iotd
+  branch: null
+  default_ec2_keyname: aws-eb
+  default_platform: Python 3.4
+  default_region: ap-northeast-1
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-coherent
+  repository: null
+  sc: null
+  workspace_type: Application
