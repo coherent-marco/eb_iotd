@@ -46,7 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'images',
-    'storages', 
+    # 'storages',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -107,15 +107,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_ROOT = 'static'
-STATICFILES_LOCATION = 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'www', 'static')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+# STATICFILES_LOCATION = 'static'
 
 # This is used by the `static` template tag from `static`, if you're using that. Or if anything else
 # refers directly to STATIC_URL. So it's safest to always set it.
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+#STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
 # Tell the staticfiles app to use S3Boto storage when writing the collected static files (when
 # you run `collectstatic`).
-STATICFILES_STORAGE = 'iotd.custom_storages.StaticStorage'
+#STATICFILES_STORAGE = 'iotd.custom_storages.StaticStorage'
 
 #MEDIA FILE (user uploaded files)
 MEDIA_ROOT = os.path.join(BASE_DIR, "..", "www", "media")
