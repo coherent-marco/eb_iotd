@@ -142,7 +142,7 @@ if LOCAL_ENV:
     MEDIA_URL = '/media/'
 else:
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-    MEDIA_URL = 'https://%s/%s' % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION, )
+    MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION, )
 
 
 
