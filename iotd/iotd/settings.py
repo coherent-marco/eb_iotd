@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from . import custom_storages
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -114,6 +114,7 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 # Use STATIC_ROOT if serving from same machine
 # Use STATICFILES_STORAGE for advanced use cases (eg CDN)
 
+LOCAL_ENV = False
 if LOCAL_ENV:
     STATIC_ROOT = os.path.join(BASE_DIR, '..', 'www', 'static')
     STATIC_URL = '/static/'
@@ -132,7 +133,7 @@ else:
     AWS_ACCESS_KEY_ID = 'AKIAIZJNLFGNHLQGTLXQ'
     AWS_SECRET_ACCESS_KEY = '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'
 
-    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_STORAGE = 'iotd.custom_storages.StaticStorage'
     STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION, )
 
 
@@ -143,7 +144,7 @@ if LOCAL_ENV:
     MEDIA_ROOT = os.path.join(BASE_DIR, "..", "www", "media")
     MEDIA_URL = '/media/'
 else:
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    DEFAULT_FILE_STORAGE = 'iotd.custom_storages.MediaStorage'
     MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION, )
 
 
