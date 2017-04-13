@@ -1,6 +1,6 @@
 branch-defaults:
   default:
-    environment: iotd-dev
+    environment: env-dev
     group_suffix: null
 global:
   application_name: iotd
