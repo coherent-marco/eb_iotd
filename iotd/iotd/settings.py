@@ -19,16 +19,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '-r5cw=c2xk9!v87m2(3av2cdr!!k_4+pj&c6qc_p_o^1%m8nh^'
 
-# AWS keys
-AWS_STORAGE_BUCKET_NAME = 'latizen-iotd-test'
-AWS_ACCESS_KEY_ID = 'AKIAJGXN6IR4GLBW4A4A'
-AWS_SECRET_ACCESS_KEY = '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'
 
 # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
 # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
 # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
 # We also use it in the next setting.
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -46,7 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'images',
-    # 'storages',
+    'storages',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,28 +62,32 @@ WSGI_APPLICATION = 'iotd.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-if 'RDS_DB_NAME' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST' : os.environ['RDS_HOSTNAME'],
-            'PORT' : os.environ['RDS_PORT'],
-        }
-    }
-else:
+# Simple way to work out if currently running locally
+LOCAL_ENV = 'RDS_DB_NAME' not in os.environ
+
+if LOCAL_ENV:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'iotd',
             'USER': 'iotd',
             'PASSWORD': 'iotd',
-            'HOST' : 'localhost',
-            'PORT' : '5432',
+            'HOST': 'localhost',
+            'PORT': '5432',
         }
-    } 
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
+    }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -103,25 +102,49 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
+STATICFILES_LOCATION = 'static'
 
-STATIC_ROOT = os.path.join(BASE_DIR, '..', 'www', 'static')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
-# STATICFILES_LOCATION = 'static'
+AWS_STORAGE_BUCKET_NAME = 'app-iotd'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-# This is used by the `static` template tag from `static`, if you're using that. Or if anything else
-# refers directly to STATIC_URL. So it's safest to always set it.
-#STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
-# Tell the staticfiles app to use S3Boto storage when writing the collected static files (when
-# you run `collectstatic`).
-#STATICFILES_STORAGE = 'iotd.custom_storages.StaticStorage'
+# Use STATIC_ROOT if serving from same machine
+# Use STATICFILES_STORAGE for advanced use cases (eg CDN)
+
+if LOCAL_ENV:
+    STATIC_ROOT = os.path.join(BASE_DIR, '..', 'www', 'static')
+    STATIC_URL = '/static/'
+else:
+    '''
+        S3 Config
+    '''
+    # Allow browsers to cache static files
+    AWS_S3_OBJECT_PARAMETERS = {
+        # see http://developer.yahoo.com/performance/rules.html#expires
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+
+    # AWS Credentials - can also set in env
+    AWS_ACCESS_KEY_ID = 'AKIAIZJNLFGNHLQGTLXQ'
+    AWS_SECRET_ACCESS_KEY = '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'
+
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION, )
+
 
 #MEDIA FILE (user uploaded files)
-MEDIA_ROOT = os.path.join(BASE_DIR, "..", "www", "media")
-MEDIA_URL = '/media/'
+MEDIAFILES_LOCATION = 'media'
+
+if LOCAL_ENV:
+    MEDIA_ROOT = os.path.join(BASE_DIR, "..", "www", "media")
+    MEDIA_URL = '/media/'
+else:
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIA_URL = 'https://%s/%s' % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION, )
+
+
 
 TEMPLATES = [
     {
