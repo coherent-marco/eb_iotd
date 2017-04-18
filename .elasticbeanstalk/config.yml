@@ -2,6 +2,10 @@ branch-defaults:
   default:
     environment: env-dev
     group_suffix: null
+environment-defaults:
+  env-dev:
+    branch: null
+    repository: null
 global:
   application_name: iotd
   branch: null
@@ -13,5 +17,5 @@ global:
   platform_version: null
   profile: eb-coherent
   repository: null
-  sc: null
+  sc: git
   workspace_type: Application
