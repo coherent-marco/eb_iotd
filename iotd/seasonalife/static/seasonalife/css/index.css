@@ -1,0 +1,593 @@
+@media (min-width: 768px) {
+    #step-container .carousel-inner > .item{
+        display: block!important;
+    }
+}
+.btn-secondary {
+    background-color: #3b5998;
+    border-color: #3b5998;
+    text-shadow: 1px 1px 5px rgb(120,120,120);
+    color: white;
+    font-size: 14px;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 5px!important;
+    margin: 5px;
+    white-space: normal;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background-color: #355088;
+    border-color: #355088;
+    color: white
+}
+
+.text-middle {
+    vertical-align: middle
+}
+/* ------------------------------------ Photogenic Slides ------------------------------------ */
+/* Generic setup for each slide */
+.carousel > .carousel-inner > .item-fixed-height {
+    height: 350px;
+}
+    @media (min-width: 768px) {
+        .carousel > .carousel-inner > .item-fixed-height {
+            height: 500px;
+        }
+    }
+/* Start with mobile */
+.carousel-slide-content-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-position: 75% center;
+    background-color: white;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.carousel-slide-content {
+    margin: auto 10%;
+    color: #fff;
+    font-size: 7.5vw;
+
+    & > .carousel-slide-header {
+        margin: 0 0 20px;
+        font-size: 1em;
+        line-height: 100%;
+        font-weight: 700;
+        text-shadow: 0 0 10px #666;
+        color: white;
+    }
+
+    & > .carousel-slide-header {
+        &:lang(zh),:lang(zh-Hans),:lang(zh-Hant) {
+            font-weight: 600;
+        }
+    }
+
+    & > .carousel-slide-tagline {
+        margin: 0 0 20px;
+        font-size: 0.6em;
+        line-height: 110%;
+        font-weight: 400;
+        text-shadow: 0 0 10px #666;
+        color: white;
+    }
+
+    & > .btn-carousel-slide {
+        font-size: 0.5em;
+    }
+}
+
+/* Cater for the change from mobile to desktop device */
+@media (min-width: 768px) {
+    /* Account for the carousell selector below the slides */
+    /*.carousel-slide-content-wrapper {
+        height: calc(100% - 40px);
+    }*/
+    .carousel-slide-content {
+        margin: auto 25% auto 10%;
+    }
+    .carousel-slide-content > .btn-carousel-slide {
+        font-size: 0.35em;
+    }
+}
+/* Parametrize font size within slides - in piece-wise linear function with screen width */
+.carousel-slide-content {
+    font-size: 7.5vw;
+}
+    @media (min-width: 375px) {
+        .carousel-slide-content { font-size: calc(4vw + 12.5px); }
+    }
+    @media (min-width: 768px) {
+        .carousel-slide-content { font-size: calc(1.5vw + 32px); }
+    }
+
+/* Customize for any particular slide should only involve stylizing .carousel-slide-content-wrapper-<index> /.carousel-slide-content-wrapper-<index> > .carousel-slide-content (Mostly only margins and font-size) */
+/* Example: Customizing .carousel-slide-content-wrapper-2 */
+@media (max-width: 767px){
+    .carousel-slide-content-wrapper-1 {
+        background-position: 75% 10%;
+    }
+    .carousel-slide-content-wrapper-2 {
+        background-position: 96% center;
+    }
+}
+
+/* Slide controls */
+.home-carousel-tab-list {
+    position: absolute;
+    transform: translateY(-100%);
+}
+.home-carousel-tab-list > li { background-color: rgba(0,0,0,.2); }
+.home-carousel-tab-list > li.active { background-color: rgba(0, 24, 168,.3); }
+.home-carousel-tab-list > li > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 40px;
+    background-color: transparent!important;    /* To override background color setting of :hover and :focus as well*/
+}
+.home-carousel-tab-list > li > a > span {
+    font-size: 18px;
+    line-height: 100%;
+    font-weight: 600;
+    color: #fff;
+    margin: auto;
+}
+.home-carousel-indicators { bottom: 30px; }
+.home-carousel-indicators > li { margin: 1px 5px; }
+.home-carousel-indicators > li.active { margin: 0 4px; }
+
+/* ------------------------------------ Compare product shortcuts (mobile only) ------------------------------------*/
+.compare-product-header-xs {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #666666;
+}
+.compare-product-icon-xs {
+    min-width: 70px;
+    width: 50%;
+    border-radius: 50%;
+    border: solid 3px white;
+    color: white;
+    padding: 3px;
+}
+.compare-product-icon-xs:hover {
+    border: solid 3px #3e5b9a;
+}
+/* ------------------------------------ Value proposition section ------------------------------------ */
+/* Mobile */
+.reasons-header {
+    margin-top: 80px;
+    margin-left: 15px;
+    font-size: 12vw;
+    line-height: 100%;
+    font-weight: 300;
+}
+.reasons-header:lang(zh),
+.reasons-header:lang(zh-Hans),
+.reasons-header:lang(zh-Hant) {
+    font-size: 44px;
+    text-align: left;
+    font-weight: 200;
+}
+.reasons-item {
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+}
+.reasons-item-image {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    margin: 0 0 15px;
+}
+.reasons-item-header {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 24px;
+    margin: 15px 0;
+    color: rgb(70,70,70);
+    display: flex;
+    align-items: center;
+}
+.reasons-item-paragraph {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 30px;
+}
+.reasons-item-icon {
+    min-width: 20px;
+    height: 20px;
+    margin: auto 5px auto 0;
+}
+.reasons-image-header {
+    margin-top: 30px;
+    margin-left: 15px;
+    font-size: 9vw;
+    font-weight: 500;
+    line-height: 100%;
+}
+.reasons-image-header:lang(zh),
+.reasons-image-header:lang(zh-Hans),
+.reasons-image-header:lang(zh-Hant) {
+    font-size: 36px;
+    font-weight: 500;
+}
+.reasons-image-tagline {
+    margin-left: 15px;
+    margin-bottom: 40px;
+    font-size: 16px;
+    line-height: 22px;
+}
+/* Desktop */
+@media (min-width: 768px){
+    .reasons-header {
+		margin-top: 0px;
+		margin-left: 0px;
+        font-size: 48px;
+        font-weight: 800;
+        color: #464646;
+    }
+    .reasons-header:lang(zh),
+    .reasons-header:lang(zh-Hans),
+    .reasons-header:lang(zh-Hant) {
+        font-size: 48px;
+        text-align: center;
+        font-weight: 800;
+        margin-top: 0px;
+		margin-left: 0px;
+        color: #464646;
+    }
+    .reasons-tagline {
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .reasons-item {
+        display: flex;
+        align-items: center;
+        padding-right: 0;
+    }
+    .reasons-item-header {
+        margin: 15px 0 5px;
+    }
+    .reasons-item-image {
+        max-width: 450px;
+        margin: 60px 0;
+    }
+    .reasons-item-icon {
+        min-width: 70px;
+        height: 70px;
+        margin-right: 30px;
+    }
+}
+/* ------------------------------------ About Seasonalife section ------------------------------------ */
+/* Mobile */
+.about-text-wrapper-xs {
+    margin: 80px 30px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color: white;
+
+    & p {
+        color: white;
+    }
+}
+/* Desktop */
+.about-text-wrapper {
+    margin: 0 7.5% 50px;
+}
+.about-table-separation-line {
+    height: 52px;
+    width: 25%;
+}
+.about-table-header { width: 50%; }
+.about-table-top-left, .about-table-top-right {
+    height: 52px;   /* The header cell's height is 44 (font size) + 30 * 2 (margin-y) = 104 */
+    border-top: 1px solid white;
+}
+.about-table-top-left { border-left: 1px solid white; }
+.about-table-top-right { border-right: 1px solid white; }
+.about-table-middle {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+.about-table-bottom {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+    height: 20px;
+}
+.about-header {
+    font-size: 44px;
+    line-height: 100%;
+    font-weight: 800;
+    color: white;
+    margin: 30px 0;
+}
+.about-text {
+    font-size: 16px;
+    line-height: 20px;
+    color: white;
+    margin: 0 15% 20px;
+}
+.btn.btn-about-xs {
+    background-color: #1da1f2;
+    border-color: #1da1f2;
+}
+/* ------------------------------------ Three-Steps section ------------------------------------ */
+/* Mobile */
+.steps-container {
+    padding: 40px 0 80px;
+}
+.steps-text-wrapper {
+    margin: 0 5px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #404040;
+}
+.steps-header {
+    font-size: 36px;
+    line-height: 36px;
+    font-weight: 500;
+    margin: 40px 0 30px 10px;
+}
+.steps-tagline {
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+.steps-item-img {
+    height: 60px;
+    min-height: 60px;
+    width: auto;
+}
+.steps-item-header {
+    font-size: 16px;
+    font-weight: 800;
+    margin-top: 5px;
+    color: #404040;
+}
+.steps-item-hr {
+    width: 80%;
+}
+/* Desktop */
+@media (min-width: 768px){
+    .steps-text-wrapper {
+        margin-bottom: 30px;
+    }
+    .steps-header {
+        font-size: 44px;
+        line-height: 100%;
+        font-weight: 800;
+        text-align: center;
+        margin: 100px 0 30px;
+    }
+    .steps-item {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        border: 1px solid #E8E8E8;
+        height: 340px;
+        min-height: 340px;
+        max-height: 340px;
+        background-color: rgb(255, 255, 255);
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .steps-item-wrapper {
+        margin: auto;
+        -ms-flex: 1 0;
+    }
+    .steps-item-content {
+        margin: 0 5px;
+    }
+    .steps-item-img {
+        height: 100px;
+        min-height: 100px;
+    }
+    .steps-item-img {
+        height: 100px;
+        min-height: 100px;
+    }
+    .steps-item-header {
+        font-size: 16px;
+        line-height: 100%;
+        font-weight: 500;
+        color: #969696;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .steps-item-text {
+        min-height: 50px;
+        font-size: 18px;
+        line-height: 24px;
+        text-align: center;
+        font-weight: 800;
+        color: #505050;
+    }
+}
+@media (min-width: 1200px){
+    .steps-text-wrapper {
+        margin-left: 7.5%;
+        margin-right: 7.5%;
+    }
+    .steps-item-text {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}
+/* ------------------------------------ Compare product shortcut (desktop only) ------------------------------------ */
+.compare-product-text-wrapper {
+    margin-bottom: 60px;
+}
+.compare-product-text, .compare-product-text-wrapper > select {
+    display:inline-block;
+    width:auto;
+    height:auto;
+    border-width: 0 0 1px 0;
+    font-size: 36px;
+    line-height: 36px;
+    color: rgb(180,180,180);
+    background-color: transparent;
+    text-align-last:center;
+}
+.compare-product-text {
+    margin-right: 10px;
+}
+/* ------------------------------------ Insurance101 & Newsroom section------------------------------------ */
+.articles-wrapper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.post-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.post-item-thumbnail {
+    margin-right: 20px;
+    width: 80px;
+    min-width: 80px;
+    height: 60px;
+    min-height: 60px;
+}
+
+.post-item-thumbnail a img {
+    object-fit: cover;
+    padding: 0;
+    width: 80px;
+    height: 60px;
+}
+.post-item-info  {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.post-item-info .post-item-details {
+    font-size: 12px;
+    line-height: 18px;
+}
+.post-item-info .post-item-title {
+    color: rgb(100,100,100);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+}
+/* For tablet and desktop */
+@media (min-width: 768px){
+    .articles-wrapper {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        & .articles-wrapper-header {
+          text-transform: capitalize;
+          font-size: 30px;
+          font-weight: 500;
+          border-bottom: 1px solid #dcdcdc;
+        }
+    }
+
+    .post-item-thumbnail {
+        width: 120px;
+        min-width: 120px;
+        height: 90px;
+        min-height: 90px;
+    }
+    .post-item-thumbnail a img {
+        width: 120px;
+        height: 90px;
+    }
+    .post-item-info .post-item-title {
+        color: rgb(100,100,100);
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 16px;
+    }
+}
+/* ------------------------------------ Footer (over-riding) ------------------------------------ */
+#basement {
+    margin-top: 0!important;
+}
+/* ------------------------------------ Utility ------------------------------------ */
+.gray-section {
+    background-color: #f8f8f8;
+}
+.pale-blue-section {
+    background-color: #ecf3fa;
+}
+.navy-section {
+    background-color: #3b5998;
+}
+.white-section {
+    background-color: white;
+}
+@media (max-width: 767px) {
+    .pale-blue-section-xs {
+        background-color: #ecf3fa;
+    }
+}
+.blue-separator {
+	width: 60px;
+	height: 1px;
+	margin: 60px auto 0;
+	border-bottom: 2px solid #3b5998;
+}
+.blue-separator-overlay {
+	width: 60px;
+	height: 1px;
+	margin: 0 auto;
+    padding: 60px 0 0;
+	border-bottom: 2px solid #3b5998;
+}
+.transparent-separator {
+	width: 60px;
+	height: 1px;
+	margin: 60px auto 0;
+}
+@media (max-width: 767px){
+    .heading-xs{
+        font-size:5.8vw;
+        line-height:22px;
+        font-weight:800;
+        margin-bottom : 25px
+    }
+}
+@media (min-width: 768px) and (max-width: 991px){
+    .heading-sm{
+        font-size: 25px;
+        line-height: 25px;
+        font-weight: 800;
+        margin-bottom: 25px;
+    }
+}
+.triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 15px 0 15px;
+    border-color: #3e5b9a transparent transparent transparent;
+    vertical-align: top;
+    vertical-align: -moz-middle-with-baseline;
+}
+.triangle-inv {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 15px 0 15px;
+    border-color: white transparent transparent transparent;
+    vertical-align: top;
+    background-color: transparent;
+}
+.triangle-inv-bg {
+    background-color: transparent;
+}

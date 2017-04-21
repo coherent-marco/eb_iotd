@@ -1,0 +1,136 @@
+{% spaceless %}
+
+{% load extra_tags %}
+{% load staticfiles %}
+{%  load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{LANGUAGE_CODE}}" style="height:100%;">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{%  static 'img/favicon.ico' %}">
+    <title>{% block title %}Seasonalife{% endblock %}</title>
+    <!--============================================================ Metadata ============================================================-->
+    <meta property="fb:app_id"              content="492861984172448" />
+    <meta property="og:type"                content="website" />
+    <meta property="og:site_name"           content="seasonalife" />
+    <meta property="og:locale"              content="en_US" />
+    <meta property="og:locale:alternate"    content="zh_HK" />
+    <meta property="og:rich_attachment"     content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <!--============================================================ Stylesheet ============================================================-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        /* Set button images */
+        /* New button style; will be convert to svg */
+        .btn.btn-radio {background-image: url({% static "img/icons/radio_off.png" %})}
+        .btn.btn-radio.active, .btn.btn-radio:active {background-image: url({% static "img/radio_on.png" %})}
+        .btn.btn-male, .btn.btn-male.active, .btn.btn-male:active {background-image: url({% static "img/male.png" %})}
+        .btn.btn-female, .btn.btn-female.active, .btn.btn-female:active {background-image: url({% static "img/female.png" %})}
+        select.form-control { background-image: url({% static 'img/utilities/arrow.png' %}); }
+    </style>
+    <style>
+        /* Import fonts from google */
+        /* Dragged this out from block stylecss; To be confirmed whether load this globally */
+        @import url("//fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,600,700,800,900&amp;lang=en");
+        @import url("//fonts.googleapis.com/css?family=Lato:400,700");
+        @import url("//fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,900,800,700");
+        @import url('//fonts.googleapis.com/css?family=Roboto:300');
+        /* Font for buttons*/
+        @font-face { font-family: Avenir; src: url({% static "font/AvenirLTStd-Black.otf" %}); }
+    </style>
+    {% block stylecss %}
+    <link type="text/css" href='{% static "css/style.css" %}' rel="stylesheet">
+    {% endblock stylecss %}
+    <!--============================================================ JavaScripts ============================================================-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Collection of in-house JS which is included in all pages -->
+    <!-- build:js app/js/sl.min.js -->
+    <script type="text/javascript" src='{% static "js/sl.js" %}'></script>
+    <!-- endbuild -->
+    {% block critical_dependencies %}
+    <!-- build:css app/css/layout.bundle.css -->
+    <link type="text/css" href="{% static 'seasonalife/css/topbar.css' %}" rel="stylesheet">
+    <!-- endbuild -->
+    {% endblock critical_dependencies %}
+    <!-- Google Analytics, autotrack and polyfill -->
+    <script>
+        _ga('{% environ "TRACKING_ID" %}');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.1.1/autotrack.js"></script>
+    <script async src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
+    {% block start_scripts %}{% endblock %}
+    {% block start_css_app %}{% endblock %}
+    {% block start_css %}{% endblock %}
+</head>
+<body class="boxed-layout" id="page-top" style="min-height: 100%!important;min-width: 100%!important;">
+	<!-- Main Contents -->
+	<div id="wrapper" class="white-bg">
+        {% if not no_topbar %}
+        {% include "seasonalife/topbar.html" %}
+        {% endif %}
+		<div id="full_container">
+            {% block leftbar %}{% endblock %}
+            {% block content %}{% endblock %}
+            {% block rightbar %}{% endblock %}
+            <div class="clearfix"></div>
+            {% block chatbox %}{% endblock chatbox %}
+            {% block footer %}{% endblock footer %}
+         </div>
+    </div>
+
+    <!-- build:css app/css/layout.modal.min.css -->
+    <link type="text/css" href="{% static 'css/modal.css' %}" rel="stylesheet">
+    <!-- endbuild -->
+    {% block security %}
+    {% if not user.is_authenticated %}
+    {% include "seasonalife/login_modal.html" %}
+    <script defer type="text/javascript" src="{% jsi18n '' %}"></script>
+    <script defer type="text/javascript" src="//cdn.auth0.com/js/lock/10.7.0/lock.min.js"></script>
+    <!-- build:js app/js/layout.bundle.d.js defer -->
+    <script defer type="text/javascript" src="{% static 'js/lock.js' %}"></script>
+    <!-- endbuild -->
+    <!-- build:css app/css/layout.bundle.d.css -->
+    <link type="text/css" href="{% static 'css/lock.css' %}" rel="stylesheet">
+    <!-- endbuild -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            initAuth0('{% settings "AUTH0_DOMAIN" %}', '{% settings "AUTH0_CLIENT_ID" %}', '{% settings "AUTH0_CONNECTION" %}');
+        });
+    </script>
+    {% endif %}
+    {% endblock security %}
+
+    {% block dependencies %}{% endblock dependencies %}
+
+    <noscript id="deferred-styles">
+        {% block deferred-styles %}
+        <link type="text/css" href='//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css' rel="stylesheet">
+        <link type="text/css" href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel="stylesheet">
+        {% endblock deferred-styles %}
+    </noscript>
+    <script>
+        var loadDeferredStyles = function() {
+            var addStylesNode = document.getElementById("deferred-styles");
+            var replacement = document.createElement("div");
+            replacement.innerHTML = addStylesNode.textContent;
+            document.body.appendChild(replacement);
+        };
+        var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+        if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+        else window.addEventListener('load', loadDeferredStyles);
+    </script>
+</body>
+{% block end_scripts %}{% endblock %}
+
+{% block menu_highlight %}{% endblock %}
+</html>
+
+{% endspaceless %}

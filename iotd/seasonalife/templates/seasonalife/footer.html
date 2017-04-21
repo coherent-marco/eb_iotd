@@ -1,0 +1,139 @@
+<section id="basement">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                {% block footer_compare %}
+                <div class="col-sm-3 col-xs-6 menu text-center-xs">
+                    <a class="h2" href='/products/select'>{% trans "BMBR001" %}</a>
+                    <ul class='hidden-xs'>
+                        {% for product in product_settings %}
+                        <li class="menu-item">
+                            <a
+                                {% if product.inactive %}
+                                class="inactive"
+                                {% else %}
+                                href="/products/select/{{product.name}}"
+                                {% endif %}
+                            >
+                                {% trans product.header as header %}{{header|capfirst}}
+                                {% if product.beta %}<span class="beta"></span></a>{% endif %}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endblock footer_compare %}
+
+                {% block footer_calculator %}
+                <div class="col-sm-3 col-xs-6 menu text-center-xs">
+                    <a class="h2" href='/calculator'>{% trans "BMBR002" %}</a>
+                    <ul class='hidden-xs'>
+                        <li class="menu-item"><a href="/familyexpenses">{% trans "BMBR002a" %}</a></li>
+                        <li class="menu-item"><a href="/lifeexpectancy">{% trans "BMBR002c" %}</a></li>
+                        <li class="menu-item"><a href="/rentbuy">{% trans "BMBR002d" %}</a></li>
+                        <li class="menu-item"><a class="inactive">{% trans "BMBR002b" %}</a></li>
+                        <li class="menu-item"><a class="inactive">{% trans "BMBR002e" %}</a></li>
+                        <li class="menu-item"><a class="inactive">{% trans "BMBR002f" %}</a></li>
+                    </ul>
+                </div>
+
+                <div class="clearfix visible-xs"></div>
+                {% endblock footer_calculator %}
+
+                {% block footer_tuneup %}
+                <div class="col-sm-3 col-xs-6 menu text-center-xs">
+                    <a class="inactive h2" href='/calculator'>{% trans "BMBR003" %}</a>
+                    <ul class='hidden-xs'>
+                        <li class="menu-item">
+                            <a class="inactive" href="/insuranceneed/fullassessment">{% trans "BMBR003a" %}</a>
+                        </li>
+                        <li class="menu-item">
+                            <a class="inactive" href="/insuranceneed/cal/health_ins">{% trans "BMBR003b" %}</a>
+                        </li>
+                        <li class="menu-item">
+                            <a class="inactive" href="/insuranceneed/cal/term_whole">{% trans "BMBR003c" %}</a>
+                        </li>
+                        <li class="menu-item">
+                            <a class="inactive" href="/insuranceneed/cal/emergency_saving">{% trans "BMBR003d" %}</a>
+                        </li>
+                        <li class="menu-item">
+                            <a class="inactive" href="/insuranceneed/cal/life_ins_amount">{% trans "BMBR003e" %}</a>
+                        </li>
+                    </ul>
+                </div>
+                {% endblock footer_tuneup %}
+
+                {% block footer_about %}
+                <div class="col-sm-3 col-xs-6 menu text-center-xs">
+                    <a class="h2" href='/about'>{% trans "BMBR004" %}</a>
+                    <ul class='hidden-xs'>
+                        <li class="menu-item">
+                            <a href="/about?p=ourstory">{% trans "BMBR004b" %}</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/about?p=team">{% trans "BMBR004c" %}</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/about?p=faq">{% trans "BMBR004d" %}</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/about?p=joinourteam">{% trans "BMBR004a" %}</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/about?p=contact">{% trans "BMBR004e" %}</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/newsroom">{% trans "BMBR004f" %}</a>
+                        </li>
+                    </ul>
+                </div>
+                {% endblock footer_about %}
+            </div>
+            <div class="col-sm-3 col-xs-12 menu" style="text-align:center;">
+                <div class="row">
+                    <p class="m-t-sm text-center">
+                    <!---->{%  trans "BMBR005" %}<!---->
+                    </p>
+                    <div>
+                        <a class="social-icon" target="_blank" href="https://www.linkedin.com/company/seasonalife">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                        <a class="social-icon" target="_blank" href="https://www.facebook.com/Seasonalife">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                        <a class="social-icon" target="_blank" href="https://twitter.com/sslhkltd">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                {% block footer_legal %}
+                <div id="legal" class="row mt-1">
+                    <a href="/legal#terms">{% trans "TERMS000" %}</a>
+                    <span class="hidden-sm"> | </span>
+                    <a href="/legal#privacy">{% trans "PRIV000" %}</a>
+                </div>
+                {% endblock footer_legal %}
+            </div>
+        </div>
+        {% block footer_disclaimer %}
+
+        <hr>
+
+        <div id="disclaimer" class="row hidden-xs" style="padding:2.5%">
+            {% trans "DISCLAIMER" %}
+        </div>
+        <div id="disclaimer" class="row visible-xs" style="padding:2.5%">
+            {% trans "DISCLAIMER-xs" %}
+        </div>
+        {% endblock footer_disclaimer %}
+    </div>
+</section>

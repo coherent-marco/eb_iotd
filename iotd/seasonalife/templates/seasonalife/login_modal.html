@@ -1,0 +1,120 @@
+{% load extra_tags %}
+<div class="modal modal-wider fade" id="login_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <img class="modal-header-img img-circle" src="{% static 'img/agent/a6.jpg' %}">
+                <p class="header my-1 text-left">{% trans 'LOGIN001' %}</p>
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="active"><a data-toggle="tab" href="#login">{% trans 'AdvisorLogin' %}</a></li>
+                    <li><a data-toggle="tab" href="#registration">{% trans 'LOGIN001a' %}</a></li>
+                </ul>
+                <div class="tab-content">
+                    <!-- Login panel -->
+                    <div id="login" class="tab-pane auth0-wrapper fade in active">
+                    {% include "seasonalife/login_block.html" %}
+                    </div>
+                    <!-- End of login panel -->
+
+                    <!-- Registration panel -->
+                    <div id="registration" class="tab-pane fade">
+                        <form autocomplete="off">
+                            {% csrf_token %}
+                            <!-- Agent / Broker -->
+                            <div class="btn-group btn-group-justified" data-toggle="buttons">
+                                <div type="button" class="btn btn-radio" name="agent">
+                                    <input type="radio" name="group" value="a" required>{% trans 'LOGIN005a' %}
+                                </div>
+                                <div type="button" class="btn btn-radio" name="broker">
+                                    <input type="radio" name="group" value="b" required>{% trans 'LOGIN005b' %}
+                                </div>
+                            </div>
+                            <!-- First name -->
+                            <div class="row mt-2">
+                                <div class="col-xs-5 col-sm-6 text-right">
+                                    <span>{% trans 'LOGIN006' %}</span>
+                                </div>
+                                <div class="col-xs-7 col-sm-6 text-left">
+                                    <input class="text-input" name="firstname" required>
+                                </div>
+                            </div>
+                            <!-- Last name -->
+                            <div class="row mt-2">
+                                <div class="col-xs-5 col-sm-6 text-right">
+                                    <span>{% trans 'LOGIN007' %}</span>
+                                </div>
+                                <div class="col-xs-7 col-sm-6 text-left">
+                                    <input class="text-input" name="lastname" required>
+                                </div>
+                            </div>
+                            <!-- Company -->
+                            <div class="row mt-2">
+                                <div class="col-xs-5 col-sm-6 text-right">
+                                    <span class="agent">{% trans 'LOGIN008a' %}</span>
+                                    <span class="broker" style="display:none;">{% trans 'LOGIN008b' %}</span>
+                                </div>
+                                <div class="col-xs-7 col-sm-6 text-left">
+                                    <input class="text-input" name="company" required>
+                                </div>
+                            </div>
+                            <!-- Registration number -->
+                            <div class="row mt-2">
+                                <div class="col-xs-5 col-sm-6 text-right">
+                                    <span class="agent">{% trans 'LOGIN009a' %}</span>
+                                    <span class="broker" style="display:none;">{% trans 'LOGIN009b' %}</span>
+                                </div>
+                                <div class="col-xs-7 col-sm-6 text-left">
+                                    <input class="text-input" name="regnumber" required>
+                                </div>
+                            </div>
+                            <!-- Phone number -->
+                            <div class="row mt-2">
+                                <div class="col-xs-5 col-sm-6 text-right">
+                                    <span>{% trans 'LOGIN010' %}</span>
+                                </div>
+                                <div class="col-xs-7 col-sm-6 text-left">
+                                    <input class="text-input" name="phone" required>
+                                </div>
+                            </div>
+                            <!-- Email -->
+                            <div class="row mt-2">
+                                <div class="col-xs-5 col-sm-6 text-right">
+                                    <span>{% trans 'LOGIN011' %}</span>
+                                </div>
+                                <div class="col-xs-7 col-sm-6 text-left">
+                                    <input class="text-input" name="email" type="email" required>
+                                </div>
+                            </div>
+                            <!-- Referral code -->
+                            <div class="row mt-2">
+                                <div class="col-xs-5 col-sm-6 text-right">
+                                    <span>{% trans 'LOGIN012' %}</span>
+                                </div>
+                                <div class="col-xs-7 col-sm-6 text-left">
+                                    <input class="text-input" name="code">
+                                </div>
+                            </div>
+
+                            <div class="row my-3 text-center">
+                                <input class="register btn btn-login" type="submit" value="{% trans 'LOGIN013' %}">
+                                <i class="fa fa-spinner fa-pulse fa-2x fa-fw" style="display: none; color: #71C6C1;"></i>
+                                <br>
+                                <span id="registration-msg"></span>
+                            </div>
+                            <p class="reference text-left">
+                                {% trans 'LOGIN004a' %}
+                                <br>
+                                {% trans 'LOGIN004b' %} <a href="mailto:sales@seasonalife.com">sales@seasonalife.com</a>
+                            </p>
+                        </form>
+                    </div>
+                    <!-- End of registration panel -->
+                </div>
+                <!-- End of tab content -->
+            </div>
+            <!-- End of modal body -->
+        </div>
+        <!-- End of modal content -->
+    </div>
+</div>

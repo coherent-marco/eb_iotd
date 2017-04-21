@@ -1,0 +1,40 @@
+.dark-gray-section {
+    background-color: #dcdcdc;
+}
+.providers-header {
+    font-size: 18px;
+    
+    @media (min-width: 768px) {
+        font-size: 20px;
+    }
+}
+.providers-icon-wrapper {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    @media (min-width: 768px) {
+        height: 65px;
+    }
+}
+.providers-icon {
+    height: 35px;
+    min-height: 35px;
+    width: auto;
+    filter: grayscale(100%);
+    transition: filter .3s ease;
+
+    &:hover {
+        filter: grayscale(0%);
+    }
+    
+    @media (min-width: 768px) {
+        height: 50px;
+        min-height: 50px;
+    }
+}
+.providers-icon-text {
+    font-size: 20px;
+    line-height: 50px;
+}

@@ -1,0 +1,282 @@
+@custom-media --menu-collapse-end (width <= 1023px);
+@custom-media --menu-collapse-start (width >= 1024px);
+@custom-media --menu-login-between (width >= 1024px) and (width <= 1500px);
+@custom-media --menu-login-start (width >= 1501px);
+
+/* Page top padding to cater for top bar */
+body#page-top {
+  padding-top: 60px;
+}
+/* Outermost level wrapping elements */
+#topbar {
+    background: #fff;
+    box-shadow: 0 2px 3px 0 rgba(102,102,102,.3);
+}
+.topbar-wrapper {
+    width:100%;
+    height:60px;
+}
+.navbar-default {
+    border: none;
+}
+/* Top-left company logo */
+.sl-logo-wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  -ms-flex: 1 0 auto;
+}
+.sl-logo-wrapper > a {
+    margin: auto 15px;
+}
+.sl-logo-img {
+    width: 135px;   /* translates to height of ~30px */
+    height: auto;
+}
+@media (min-width: 768px){
+    .sl-logo-img {
+        width: 205px;   /* translates to height of ~45px */
+    }
+}
+/*top-right language/login menu*/
+.menu-header.menu-header-controller {
+    font-size: 16px;
+    line-height: 20px;
+}
+/* Primary level menu */
+.topbar-menu {
+    padding: 0;
+    border-top: 1px solid #e7e7e7;
+    background-color: rgb(236, 243, 250);
+    box-shadow: 0 2px 3px 0 rgba(102,102,102,.3);
+}
+.topbar-menu.collapse {
+    display: none!important;
+}
+.topbar-menu.collapse.in {
+    display: block!important;
+}
+.topbar-menu > ul {
+    padding: 0;
+    list-style: none;
+}
+.menu-item {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.menu-header {
+    margin: auto 50px;
+    font-weight: 600;
+}
+.menu-header a {
+    color: rgb(59, 89, 152);
+    font-size: 16px;
+}
+.menu-header > a:hover, .menu-header > a.current {
+    border-bottom: 3px solid rgb(59, 89, 152);
+    padding-bottom: 15px;
+}
+/* Secondary level menu */
+.sub-menu {
+    display: none;
+    overflow: hidden;
+    background-color: rgba(246,247,248,.98);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 0 12.5% 30px;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.15);
+    border-top: 1px solid #dcdcde;
+
+    @media (--menu-login-between) {
+        padding: 0 100px 30px;
+    }
+
+}
+.sub-menu-header {
+    font-weight: 800;
+    color: rgb(70,70,70);
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.sub-menu-item {
+    display: block;
+}
+.sub-menu-item > a{
+    cursor: pointer;
+    color: rgb(50,50,50);
+}
+.sub-menu-item > a:hover {
+    color: rgb(59, 89, 152);
+}
+
+.menu-item-login {
+    height: 30px;
+    flex-grow: 1;
+}
+.menu-header-controller {
+    margin: auto 25px auto auto;
+}
+.menu-header.menu-header-controller a {
+    font-size: 12px;
+}
+/* Top-right controller elements - mobile version (shopping cart/ language change/ login/ etc) */
+#topbar-collapse-button-xs {
+    display: block;
+    margin: 13px 20px 13px 10px;
+    background-color: rgb(236, 243, 250);
+    border-color: #e8e8e8;
+}
+#topbar-shopping-xs {
+    position: relative;
+    float: right;
+    color: #337ab7;
+    margin: 20px 0;
+}
+.badge-cart-item-count {
+	background-color: #d1dade;
+	color: #5e5e5e;
+	font-size: 11px;
+    width: 30px;
+    margin-left: 5px;
+}
+.topbar-controller {
+    color:rgb(59, 89, 152);
+    padding: 0 10px;
+}
+#topbar-shopping {
+    display: none;
+}
+
+#topbar-login {
+    & .topbar-username {
+        @media (--menu-collapse-end) {
+            display: block;
+            font-size: 13px;
+            line-height: 13px;
+            text-align: right;
+            padding-right: 10px;
+        }
+        @media (--menu-login-between) {
+            #topbar-login .topbar-username {
+                display: block;
+                font-size: 13px;
+                text-align: right;
+                padding-right: 10px;
+                max-width: 180px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                margin: -10px 0 0 0;
+            }
+        }
+        @media (--menu-login-start) {
+            font-size: 1.2rem;
+        }
+    }
+
+    & .topbar-controller-wrapper {
+        @media (--menu-login-between) {
+            float: right;
+        }
+    }
+}
+@media (--menu-collapse-end) {
+    #topbar-login .topbar-username {
+        display: block;
+        font-size: 13px;
+        line-height: 13px;
+        text-align: right;
+        padding-right: 10px;
+    }
+}
+@media (--menu-login-between) {
+    #topbar-login .topbar-username {
+        display: block;
+        font-size: 13px;
+        text-align: right;
+        padding-right: 10px;
+        max-width: 180px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: -10px 0 0 0;
+    }
+    #topbar-login .topbar-controller-wrapper {
+        float: right;
+    }
+
+}
+@media (--menu-login-start) {
+    .menu-header a {
+        font-size: 16px;
+    }
+}
+
+/* A customized break-point */
+@media (--menu-collapse-start) {
+    .topbar-wrapper {
+        display: flex;
+    }
+    /* Primary level menu */
+    .topbar-menu {
+        background-color: white;
+        box-shadow: none;
+    }
+    .topbar-menu.collapse {
+        display: block!important;
+        border: none;
+    }
+    .topbar-menu > ul {
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+    }
+    .menu-header {
+        margin: auto 10px;
+    }
+    .menu-header a {
+        font-size: 16px;
+    }
+    .menu-item {
+        height: 60px;
+    }
+    .menu-item:hover .sub-menu{
+        display: block;
+    }
+    /* Top-right controller elements */
+    #mobile-control {
+        display: none;
+    }
+    .menu-header-controller {
+        position: absolute;
+        top: 20px;
+        right: 0;
+    }
+    #topbar-collapse-button-xs {
+        display: none;
+    }
+    #topbar-shopping {
+        display: inline-block;
+        cursor: pointer;
+        color: #337ab7;
+    }
+    #topbar-shopping:hover {
+        color: #23527c;
+    }
+}
+
+/* IMPORTANT: Will be removed after ridding of style.css */
+a.inactive {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* To offset style.css */
+.menu-header > a > span {
+    padding-left: 0;
+    font-size: inherit;
+}

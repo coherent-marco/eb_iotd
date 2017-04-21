@@ -1,0 +1,213 @@
+{% load extra_tags %}
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="topbar">
+    <div class="navbar-header topbar-wrapper">
+        <div id="mobile-control">
+            <button id="topbar-collapse-button-xs" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".topbar-menu" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="sl-logo-wrapper">
+            <a href="/">
+                <img class="sl-logo-img" class="img-responsive" src="{% block logo_url %}{% static 'img/Seasonalife_logo.png' %}{% endblock logo_url %}">
+            </a>
+        </div>
+        <div class="topbar-menu navbar-collapse collapse" style="width: 100%;">
+            <ul>
+                {% block topbar_questions %}
+                <li id="topbar-questions" class="menu-item">
+                    <div class="navbar-header menu-header" >
+                        <a id="topbar-questions-top" href="/calculator">
+                            <span>{% trans "TPBR001" %}</span>
+                        </a>
+                    </div>
+                    <div id="topbar-questions" class="sub-menu">
+                        <ul class="menu-panel col-sm-3">
+                            <p class="sub-menu-header">{% trans "TPBR002" %}</p>
+                            <li class="sub-menu-item h5">
+                                <a href="/familyexpenses">{% trans "TPBR003" %}</a>
+                            </li>
+                            <li class="sub-menu-item h5">
+                                <a class="inactive">{% trans "TPBR004" %}</a>
+                                <!--<a href="/insuranceneed">{% trans "TPBR004" %}</a>-->
+                            </li>
+                        </ul>
+                        <ul class="menu-panel col-sm-3">
+                            <p class="sub-menu-header">{% trans "TPBR005" %}</p>
+                            <li class="sub-menu-item h5">
+                                <a href="/lifeexpectancy">{% trans "TPBR006" %}</a>
+                            </li>
+                        </ul>
+                        <ul class="menu-panel col-sm-3">
+                            <p class="sub-menu-header">{% trans "TPBR007" %}</p>
+                            <li class="sub-menu-item h5">
+                                <!--<a class="inactive">{% trans "TPBR008" %}</a>-->
+                                <a href="/rentbuy">{% trans "TPBR008" %}</a>
+                            </li>
+                            <li class="sub-menu-item h5">
+                                <a class="inactive">{% trans "TPBR009" %}</a>
+                                <!--<a href="/savings">{% trans "TPBR009" %}</a>-->
+                            </li>
+                        </ul>
+                        <ul class="menu-panel col-sm-3">
+                            <p class="sub-menu-header">{% trans "TPBR010" %}</p>
+                            <li class="sub-menu-item h5">
+                                <a class="inactive">{% trans "TPBR011" %}</a>
+                                <!--<a href="/irr/irrLand">{% trans "TPBR011" %}</a>-->
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {% endblock topbar_questions %}
+
+                {% block topbar_tuneup %}
+                <li id="topbar-tuneup" class="menu-item">
+                    <div class="navbar-header menu-header">
+                        <a id="topbar-tuneup-top" href="/insuranceneed">
+                            <span>{% trans "TPBR012" %}</span>
+                        </a>
+                    </div>
+                    <div id="topbar-tuneup" class="sub-menu">
+                        <ul class="menu-panel col-sm-4">
+                            <p class="sub-menu-header">{% trans "TPBR013" %}</p>
+                            <li class="sub-menu-item h5">
+                                <a class="inactive" {% comment %}href="/insuranceneed/fullassessment"{% endcomment %}>{% trans "TPBR014" %}</a>
+                            </li>
+                        </ul>
+                        <ul class="menu-panel col-sm-4">
+                            <p class="sub-menu-header">{% trans "TPBR015" %}</p>
+                            <li class="sub-menu-item h5"><a class="inactive" {% comment %}href="/insuranceneed/cal/life_ins_amount"{% endcomment %}>{% trans "TPBR016" %}</a></li>
+                            <li class="sub-menu-item h5"><a class="inactive" {% comment %}href="/insuranceneed/cal/term_whole"{% endcomment %}>{% trans "TPBR017" %}</a></li>
+                            <li class="sub-menu-item h5"><a class="inactive" {% comment %}href="/insuranceneed/cal/emergency_saving"{% endcomment %}>{% trans "TPBR018" %}</a></li>
+                            <li class="sub-menu-item h5"><a class="inactive" {% comment %}href="/insuranceneed/cal/health_ins"{% endcomment %}>{% trans "TPBR019" %}</a></li>
+                        </ul>
+                    </div>
+                </li>
+                {% endblock topbar_tuneup %}
+
+                {% block topbar_compare %}
+                <li id="topbar-compare" class="menu-item">
+                    <div class="navbar-header menu-header">
+                        <a id="topbar-compare-top" href="/products/select">
+                            <span>{% trans "TPBR020" %}</span>
+                        </a>
+                    </div>
+                    <div id="topbar-compare" class="sub-menu">
+                        {% for product_block in product_topbar %}
+                        <ul class="menu-panel col-sm-3">
+                            <p class="sub-menu-header">
+                                {% if forloop.counter == 1 %}{% trans "TPBR020" %}{% else %}&nbsp;{% endif %}
+                            </p>
+                            {% for product_name in product_block %}
+                            {% with search_key=product_name|add:'::name' %}
+                                {% with product=product_settings|get:search_key %}
+                                <li class="sub-menu-item h5">
+                                    <a
+                                        {% if product.inactive %}
+                                        class="inactive"
+                                        {% else %}
+                                        href="/products/select/{{product.name}}"
+                                        {% endif %}
+                                    >
+                                        {% trans product.header as header %}{{header|capfirst}}
+                                        {% if product.beta %}<span class="beta"></span>{% endif %}
+                                    </a>
+                                </li>
+
+                                {% endwith %}
+                            {% endwith %}
+                            {% endfor %}
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </li>
+                {% endblock topbar_compare %}
+
+                {% block topbar_insurance101 %}
+                <li id="topbar-insurance101" class="menu-item">
+                    <div class="navbar-header menu-header">
+                        <a id="topbar-insurance101-top" href="/information">
+                            <span>{% trans "TPBR026" %}</span>
+                        </a>
+                    </div>
+                    <div id="topbar-insurance101" class="sub-menu">
+                        <ul class="menu-panel col-sm-4">
+                            <p class="sub-menu-header">{% trans "TPBR027" %}</p>
+                            {% if LANGUAGE_CODE == "en" %}
+                            <li class="sub-menu-item h5">
+                                <a href="/insurance101/content/why-does-a-fresh-graduate-have-to-buy-life-insurance-en-1">{% trans "TPBR028en" %}</a>
+                            </li>
+                            <li class="sub-menu-item h5">
+                                <a href="/insurance101/content/6-useful-tips-for-applying-any-insurance-policy-en-2">{% trans "TPBR029en" %}</a>
+                            </li>
+                            {% elif LANGUAGE_CODE == "zh-hant" %}
+                            <li class="sub-menu-item h5">
+                                <a href="/insurance101/content/家用的哲學問題-zh-4">{% trans "TPBR028zh" %}</a>
+                            </li>
+                            <li class="sub-menu-item h5">
+                                <a href="/insurance101/content/畀家用，係一種投資-zh-5">{% trans "TPBR029zh" %}</a>
+                            </li>
+                            <li class="sub-menu-item h5">
+                                <a href="/insurance101/content/離地的超市-zh-6">{% trans "TPBR030zh" %}</a>
+                            </li>
+                            {% endif %}
+                            <li class="sub-menu-item h6">
+                                <a href="/insurance101">{% trans "TPBR031" %}</a>
+                            </li>
+                        </ul>
+                        <ul class="menu-panel col-sm-4">
+                            <p class="sub-menu-header">{% trans "TPBR034" %}</p>
+                            <li class="sub-menu-item h5">
+                                <a href="/information/statistics#oci_newb">{% trans "TPBR035" %}</a>
+                            </li>
+                            <li class="sub-menu-item h5">
+                                <a href="/information/statistics#claimstat">{% trans "TPBR036" %}</a>
+                            </li>
+                            <li class="sub-menu-item h5">
+                                <a href="/information/statistics#term_mini_calc_sa">{% trans "TPBR037" %}</a>
+                            </li>
+                            <li class="sub-menu-item h6">
+                                <a href="/information/statistics">{% trans "TPBR031" %}</a>
+                            </li>
+                        </ul>
+                        <ul class="menu-panel col-sm-4">
+                            <p class="sub-menu-header">{% trans "TPBR032" %}</p>
+                            <li class="sub-menu-item h5">
+                                <a href="/information/#claimforms">{% trans "TPBR033" %}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {% endblock topbar_insurance101 %}
+
+                {% block topbar_login %}
+                <li id="topbar-login" class="menu-item menu-item-login">
+                    <div class="menu-header menu-header-controller">
+                        {% if user.is_authenticated %}
+                        <span class="topbar-username">
+                            {% trans "TPBR038" %} {{user.userinfo.first_name}}{% if user.userinfo.reg_number %} ({{user.userinfo.reg_number}}){% endif %}
+                        </span>
+                        {% endif %}
+                        <span class="topbar-controller-wrapper">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% for language in LANGUAGES %}
+                            {% if not forloop.first %} | {% endif %}
+                            <a class="topbar-controller" onclick="$.redirectPost('{% url 'set_language' %}', {language: '{{language.0}}'});">{% get_language_display_name language.0 %}</a>
+                            {% endfor %}
+                            <!----> | <!---->
+                            {% if user.is_authenticated %}
+                            <a class="topbar-controller" href="javascript:void(0)" onclick="location.href='/logout';">{% trans "Logout" %}</a>
+                            {% else %}
+                            <a class="topbar-controller" data-toggle="modal" data-target="#login_modal">{% trans "AdvisorLogin" %}</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </li>
+                {% endblock topbar_login %}
+            </ul>
+        </div>
+     </div>
+</nav>

@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'images',
+    'seasonalife',
     'storages',
 )
 
@@ -94,7 +95,12 @@ else:
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGES = [
+    ('en', 'English'),
+    ('zh-Hant', '繁體中文'),
+]
+
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -107,6 +113,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 STATICFILES_LOCATION = 'static'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'iotd', 'static'),
+)
 
 AWS_STORAGE_BUCKET_NAME = 'app-iotd'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
@@ -153,7 +162,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'iotd', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -166,7 +175,10 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'debug':True,
+            'builtins': [
+                'django.templatetags.i18n',
+                'django.contrib.staticfiles.templatetags.staticfiles',
+            ],
         },
     },
 ]

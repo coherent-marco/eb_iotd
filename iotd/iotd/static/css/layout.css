@@ -1,0 +1,652 @@
+/* Set font type */
+body:lang(en) {
+	font-family: "Work sans", "Lato", "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body:lang(zh), body:lang(zh-Hans), body:lang(zh-Hant) {
+	font-family: "Roboto", "Microsoft JhengHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+p, li {
+	  color: #404040;
+}
+/* Ribbon for beta version */
+.ribbon {
+    position: absolute;
+    right: 0px;
+    top: 60px;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    text-align: right;
+}
+.ribbon > span {
+    display: block;
+    position: absolute;
+    right: -39px;
+    top: 46px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 30px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    width: 200px;
+    background: linear-gradient(#2989d8 0%, #3b5998 100%);
+    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+}
+/* Beta superscript for products */
+span.beta {
+    font-size: 0.6em;
+    font-weight: bold;
+    top: -0.8em;
+    color: #2d3a9b;
+    position: relative;
+}
+span.beta:after {
+    content: "BETA";
+}
+/* Remove scrollbar */
+body {
+  overflow: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;  /* IE */
+  overflow: -moz-scrollbars-none; /* Firefox */
+  font-size: 14px;
+}
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+	-ms-overflow-style: none;  /* IE */
+  overflow: -moz-scrollbars-vertical; /* Firefox: There is no equivalent to hide scrollbar while remain scrollable */
+}
+::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
+}
+.restore-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  background: whitesmoke;
+}
+.restore-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(200,200,200,0.3);
+  border-radius: 4px;
+}
+/* Set cursor of <a> to be pointer, no matter href presents or not */
+a {
+    cursor: pointer;
+}
+/* Remove underlining when hovering a */
+a:hover, a:active, a:focus {
+    text-decoration: none;
+    outline: none;
+}
+a.inactive {
+    pointer-events: none;
+    opacity: 0.5;
+}
+.disabled {
+  pointer-events: none;
+}
+
+/* Display: Flex */
+.flex {
+	display: flex;
+}
+
+/* Bidirectional alignment */
+.align {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+/* Horizontal alignment */
+.horizontal-align {
+	display: flex;
+	justify-content: center;
+}
+/* Vertical alignment */
+.vertical-align {
+	display: flex;
+	align-items: center;
+}
+@media (max-width: 767px) {
+	.align-xs {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	/* Horizontal alignment */
+	.horizontal-align-xs {
+		display: flex;
+		justify-content: center;
+	}
+	/* Vertical alignment */
+	.vertical-align-xs {
+		display: flex;
+		align-items: center;
+	}
+}
+@media (min-width: 768px) {
+	.align-sm-up {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	/* Horizontal alignment */
+	.horizontal-align-sm-up {
+		display: flex;
+		justify-content: center;
+	}
+	/* Vertical alignment */
+	.vertical-align-sm-up {
+		display: flex;
+		align-items: center;
+	}
+}
+
+/* Pointer cursor */
+.cursor-pointer {
+	cursor: pointer;
+}
+
+/* Responsive text-alignment */
+@media (max-width: 767px) {
+    .text-center-xs {
+        text-align: center;
+    }
+    .text-left-xs {
+        text-align: left;
+    }
+    .text-right-xs {
+        text-align: right;
+    }
+    .text-justify-xs {
+        text-align: justify;
+    }
+}
+@media (min-width: 768px) {
+    .text-center-sm-up {
+        text-align: center;
+    }
+    .text-left-sm-up {
+        text-align: left;
+    }
+    .text-right-sm-up {
+        text-align: right;
+    }
+    .text-justify-sm-up {
+        text-align: justify;
+    }
+}
+
+/* Buttons */
+/* Secondary button*/
+.btn-secondary > a {
+    color: #fff;
+}
+.btn-secondary {
+    font-family: Avenir,Work sans;
+    color: #333;
+    background-color: transparent;
+    border-color: #d3d3d3;
+    font-weight: 400;
+    border-radius: 0;
+    padding: 10px 20px;
+    margin: 5px;
+}
+.btn-secondary:hover {
+    border-color: #528FCC;
+}
+.btn-secondary:active, .btn-secondary.active {
+    color: #fff;
+    background-color: #528FCC;
+    border-color: #528FCC;
+    box-shadow: none;
+}
+.btn-default {
+    background-color: #c2c2c2;
+    border-color: #c2c2c2;
+    color: #FFF;
+}
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:active:focus {
+    background-color: #bababa;
+    border-color: #bababa;
+    color: #FFF;
+}
+
+/* button radio */
+.btn.active, .btn:active,
+.btn.active.focus, .btn.active:focus, .btn.focus,
+.btn:active.focus, .btn:active:focus, .btn:focus {
+    box-shadow: none;
+    outline: none;
+    white-space: nowrap;    /* Restore bootstrap */
+}
+
+/*.btn.btn-radio:lang(en), .btn.btn-radio.active:lang(en), .btn.btn-radio:active:lang(en),
+.btn.btn-radio.active.focus:lang(en), .btn.btn-radio:active.focus:lang(en), .btn.btn-radio.focus:lang(en),
+.btn.btn-radio.active:focus:lang(en), .btn.btn-radio:active:focus:lang(en), .btn.btn-radio:focus:lang(en) {
+    white-space: normal;
+    font-family: Avenir, "Work sans", Lato, "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}*/
+
+.btn:lang(en), .btn.active:lang(en), .btn:active:lang(en),
+.btn.active.focus:lang(en), .btn:active.focus:lang(en), .btn.focus:lang(en),
+.btn.active:focus:lang(en), .btn:active:focus:lang(en), .btn:focus:lang(en) {
+    white-space: normal;
+    font-family: Avenir, "Work sans", Lato, "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.btn-group > .btn.btn-radio,
+.btn-group > .btn.btn-radio.btn-female,
+.btn-group > .btn.btn-radio.btn-male {
+    border: 0;
+    padding-left: 60px;
+    height: 45px;
+    min-height: 45px;
+    max-height: 45px;
+    background-size: 45px;
+    background-position-x: 0;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    padding-top: 15px;
+    margin: 5px 5px 5px 0;
+}
+
+.btn.btn-radio.btn-male:not(.active), .btn.btn-radio.btn-female:not(.active) {
+    filter: grayscale(100%);
+
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      opacity: 0.25;
+    }
+}
+/* Blocking of button group */
+:root {
+    --border-spacing: 5px;
+}
+
+.btn-group.blocks {
+    border-spacing: var(--border-spacing);
+}
+
+.btn-group-justified {
+    &.blocks-offset {
+        margin-left: -var(--border-spacing);
+        border-spacing: var(--border-spacing);
+    }
+	&.blocks-offset-x {
+	    margin-left: -var(--border-spacing);
+	    border-spacing: var(--border-spacing);
+		width: calc(100% + 2 * var(--border-spacing));
+	}
+}
+
+.btn-group.btn-wordwrap {
+    table-layout: auto;
+}
+.btn-group.btn-wordwrap:lang(en) {
+    white-space: normal;
+}
+/* End of buttons and groups */
+
+/* Horizontal separator */
+.hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
+  box-sizing: content-box;
+  height: 0;
+}
+.hr-default {
+  margin-left: 15px;
+  margin-right: 15px;
+  border-color: #bbb;
+}
+
+.freeblue-line {
+	width: 60px;
+	height: 1px;
+	margin: 60px auto 0;
+	border-bottom: 2px solid #3b5998;
+}
+
+/* Customization of .form-control */
+.form-control {
+    border-radius: 0;
+}
+.form-control:focus {
+    border-color: #1ab394;
+    box-shadow: none;
+}
+
+select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    background-size: 18px;
+    background-position : right;
+    background-repeat: no-repeat;
+    padding-right: 1.5em;
+}
+select.form-control::ms-expand {
+	display: none;
+}
+
+/* Common widget definitions */
+.social-icon {
+		& > .fa-stack{
+		    font-size: 16px;
+
+        & > .fa-circle {
+          color: #3b5998;
+        }
+		}
+}
+
+/* Material design */
+.hover-floating { box-shadow: 0 0 .4em rgba(0,0,0,0.2); }
+.hover-floating:hover {
+    transition: box-shadow 300ms;
+    box-shadow: 0 0 1em rgba(0,0,0,0.5);
+}
+@media (max-width: 768px) {
+  .hover-floating-xs { box-shadow: 0 0 .4em rgba(0,0,0,0.2); }
+  .hover-floating-xs:hover {
+      transition: box-shadow 300ms;
+      box-shadow: 0 0 1em rgba(0,0,0,0.5);
+  }
+}
+@media (min-width: 768px) {
+  .hover-floating-sm-up { box-shadow: 0 0 .4em rgba(0,0,0,0.2); }
+  .hover-floating-sm-up:hover {
+      transition: box-shadow 300ms;
+      box-shadow: 0 0 1em rgba(0,0,0,0.5);
+  }
+}
+
+/* Temporarily placed here, a copy from common/css/layout.css */
+/* Bootstrap definition (as a reference)
+@zindex-navbar:            1000;
+@zindex-dropdown:          1000;
+@zindex-popover:           1060;
+@zindex-tooltip:           1070;
+@zindex-navbar-fixed:      1030;
+@zindex-modal-background:  1040;
+@zindex-modal:             1050;
+*/
+/* Top bar */
+nav#topbar, nav#topbar .sub-menu { z-index: 1030; }
+/* Beta ribbon */
+.ribbon { z-index: 1020; }
+/* Product compare page */
+#header-affix { z-index: 1020; }
+.btn-compare-bottom-group { z-index: 1020; }
+.go-to-top { z-index: 1030; }
+/*.vertical-line-1, .vertical-line-2, .vertical-line-3 { z-index: 1020; }*/
+
+/* Margin and Padding classes as in Bootstrap 4 */
+.mx-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.m-0 {
+  margin: 0 0 !important;
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mr-0 {
+  margin-right: 0 !important;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.ml-0 {
+  margin-left: 0 !important;
+}
+
+.mx-0 {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.my-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.m-1 {
+  margin: 1rem 1rem !important;
+}
+
+.mt-1 {
+  margin-top: 1rem !important;
+}
+
+.mr-1 {
+  margin-right: 1rem !important;
+}
+
+.mb-1 {
+  margin-bottom: 1rem !important;
+}
+
+.ml-1 {
+  margin-left: 1rem !important;
+}
+
+.mx-1 {
+  margin-right: 1rem !important;
+  margin-left: 1rem !important;
+}
+
+.my-1 {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.m-2 {
+  margin: 1.5rem 1.5rem !important;
+}
+
+.mt-2 {
+  margin-top: 1.5rem !important;
+}
+
+.mr-2 {
+  margin-right: 1.5rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 1.5rem !important;
+}
+
+.ml-2 {
+  margin-left: 1.5rem !important;
+}
+
+.mx-2 {
+  margin-right: 1.5rem !important;
+  margin-left: 1.5rem !important;
+}
+
+.my-2 {
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.m-3 {
+  margin: 3rem 3rem !important;
+}
+
+.mt-3 {
+  margin-top: 3rem !important;
+}
+
+.mr-3 {
+  margin-right: 3rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 3rem !important;
+}
+
+.ml-3 {
+  margin-left: 3rem !important;
+}
+
+.mx-3 {
+  margin-right: 3rem !important;
+  margin-left: 3rem !important;
+}
+
+.my-3 {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
+
+.p-0 {
+  padding: 0 0 !important;
+}
+
+.pt-0 {
+  padding-top: 0 !important;
+}
+
+.pr-0 {
+  padding-right: 0 !important;
+}
+
+.pb-0 {
+  padding-bottom: 0 !important;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+
+.px-0 {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+.py-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.p-1 {
+  padding: 1rem 1rem !important;
+}
+
+.pt-1 {
+  padding-top: 1rem !important;
+}
+
+.pr-1 {
+  padding-right: 1rem !important;
+}
+
+.pb-1 {
+  padding-bottom: 1rem !important;
+}
+
+.pl-1 {
+  padding-left: 1rem !important;
+}
+
+.px-1 {
+  padding-right: 1rem !important;
+  padding-left: 1rem !important;
+}
+
+.py-1 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.p-2 {
+  padding: 1.5rem 1.5rem !important;
+}
+
+.pt-2 {
+  padding-top: 1.5rem !important;
+}
+
+.pr-2 {
+  padding-right: 1.5rem !important;
+}
+
+.pb-2 {
+  padding-bottom: 1.5rem !important;
+}
+
+.pl-2 {
+  padding-left: 1.5rem !important;
+}
+
+.px-2 {
+  padding-right: 1.5rem !important;
+  padding-left: 1.5rem !important;
+}
+
+.py-2 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.p-3 {
+  padding: 3rem 3rem !important;
+}
+
+.pt-3 {
+  padding-top: 3rem !important;
+}
+
+.pr-3 {
+  padding-right: 3rem !important;
+}
+
+.pb-3 {
+  padding-bottom: 3rem !important;
+}
+
+.pl-3 {
+  padding-left: 3rem !important;
+}
+
+.px-3 {
+  padding-right: 3rem !important;
+  padding-left: 3rem !important;
+}
+
+.py-3 {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+
+.text-input {
+  text-align: center;
+  text-align-last: center;
+  color:#1ab394;
+  padding: 0px 12px;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  border-bottom: 1px dashed #ccc;
+  box-shadow: none;
+}
+.text-input.active, .text-input:active, .text-input:focus {
+  box-shadow: none;
+  outline: none;
+}
+.input-group-addon:first-child {
+    border-radius: 0;
+}

@@ -1,0 +1,373 @@
+{% extends "seasonalife/layout.html" %}
+
+{% load extra_tags %}
+{% load staticfiles %}
+{%  load i18n %}
+{% block stylecss %}{% endblock stylecss %}
+
+{% block critical_dependencies %}
+<!-- build:css seasonalife/css/index.bundle.css -->
+<link type="text/css" href="{% static 'seasonalife/css/topbar.css' %}" rel="stylesheet">
+<link type="text/css" href="{% static 'css/layout.css' %}" rel="stylesheet">
+<link type="text/css" href="{% static 'seasonalife/css/providers.css' %}" rel="stylesheet">
+<link type="text/css" href="{% static 'seasonalife/css/index.css' %}" rel="stylesheet">
+<link type="text/css" href="{% static 'seasonalife/css/footer.css' %}" rel="stylesheet">
+<!-- endbuild -->
+
+<style>
+    /* BACKGROUNDS SLIDER-------------------------------------------------- */
+    .carousel-slide-content-wrapper-1 {background-image: url({% static "seasonalife/img/slides/header-back_xs_2.png" %});}
+    .carousel-slide-content-wrapper-2 {background-image: url({% static "seasonalife/img/slides/header-back_xs_3.png" %});}
+    @media (min-width: 768px) {
+        .carousel-slide-content-wrapper-1 {background-image: url({% static "seasonalife/img/slides/header-back_1366_2.jpg" %});}
+        .carousel-slide-content-wrapper-2 {background-image: url({% static "seasonalife/img/slides/header-back_1366_3.jpg" %});}
+    }
+    @media (min-width: 1366px) {
+        .carousel-slide-content-wrapper-1 {background-image: url({% static "seasonalife/img/slides/header-back_1920_2.jpg" %});}
+        .carousel-slide-content-wrapper-2 {background-image: url({% static "seasonalife/img/slides/header-back_1920_3.jpg" %});}
+    }
+    @media (min-width: 768px) {
+        .about-wrapper {
+            background-image: url({% static "seasonalife/img/about-background.jpg" %});
+            background-size: cover;
+        }
+    }
+</style>
+{% endblock critical_dependencies %}
+
+{% block dependencies %}
+<script defer type="text/javascript"  src="//cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<!-- build:js seasonalife/js/index.bundle.js -->
+<script defer type="text/javascript"  src="{% static "seasonalife/js/index.js" %}"></script>
+<!-- endbuild -->
+{% endblock dependencies %}
+
+{% block deferred-styles %}
+<link type="text/css" href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel="stylesheet">
+{% endblock deferred-styles %}
+
+{% block content %}
+<!--Beta version ribbon-->
+<div class="ribbon"><span>Alpha Ver.</span></div>
+
+{% block carousel %}
+<div class="carousel slide" id="home-carousel">
+    <div class="carousel-inner">
+        <div class="item item-fixed-height">
+            <div class="carousel-slide-content-wrapper carousel-slide-content-wrapper-1">
+                <div class="carousel-slide-content">
+                    <p class="carousel-slide-header">
+                        <!---->{% trans "HOME003" %}<!---->
+                    </p>
+                    <p class="carousel-slide-tagline">
+                        <!---->{% trans "HOME004" %}<!---->
+                    </p>
+                    <div class="btn btn-secondary btn-carousel-slide m-t-md">
+                        <a href="/calculator">{% trans "FRMCTL009" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item item-fixed-height active">
+            <div class="carousel-slide-content-wrapper carousel-slide-content-wrapper-2">
+                <div class="carousel-slide-content">
+                    <p class="carousel-slide-header">
+                        <!---->{% trans "HOME005b" %}<!---->
+                    </p>
+                    <p class="carousel-slide-tagline">
+                        <!---->{% trans "HOME006" %}<!---->
+                    </p>
+                    <div class="btn btn-secondary btn-carousel-slide m-t-md">
+                        <a href="/products">{% trans "FRMCTL010" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="nav nav-justified home-carousel-tab-list hidden-xs">
+        <li data-target="#home-carousel" data-slide-to="0">
+            <a data-toggle="tab" href="#"><span>{% trans "HOME010" %}</span></a>
+        </li>
+        <li data-target="#home-carousel" class="active" data-slide-to="1">
+            <a data-toggle="tab" href="#"><span>{% trans "HOME011" %}</span></a>
+        </li>
+    </ul>
+    <ol class="carousel-indicators home-carousel-indicators visible-xs">
+        <li data-target="#home-carousel" data-slide-to="0"></li>
+        <li data-target="#home-carousel" data-slide-to="1" class="active"></li>
+    </ol>
+    <div class="text-center">
+        <hr style="border: 0; border-bottom: 8px solid #3e5b9a; width: 100%; margin: 0">
+        <div>
+            <img class="triangle" />
+        </div>
+    </div>
+</div>
+{% endblock carousel %}
+
+{% block compare_product_xs %}
+<section id="compare-product-shortcut" class="container visible-xs">
+    <h2 class="heading-xs text-center">{% trans "HOME048" %}</h2>
+    <div class="row text-center">
+        {% widthratio 12 product_landing_xs_options|length 1 as bs_col_num %}
+        {% for product_name in product_landing_xs_options %}
+        {% with search_key=product_name|add:'::name' %}
+            {% with product=product_settings|get:search_key %}
+            {% trans product.header as header %}
+            <div class="col-xs-{{bs_col_num}}">
+                <a href="products/select/{{product.name}}">
+                    <img class="compare-product-icon-xs" src="{% static product.icon_url %}" alt="{{header|title}}">
+                    <p class="compare-product-header-xs">{{header|title}}</p>
+                </a>
+            </div>
+            {% endwith %}
+        {% endwith %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock compare_product_xs %}
+
+<div class="transparent-separator visible-xs"></div>
+
+<section id="reasons" class="container pale-blue-section-xs">
+    <div class="reasons-header-wrapper text-center text-left-xs my-3">
+        <p class="reasons-header">
+            <span class="hidden-xs">{% trans "HOME013" %}</span>
+            <span class="visible-xs">{% trans "HOME051" %}</span>
+        </p>
+        <p class="reasons-tagline">
+            <span class="hidden-xs">{% trans "HOME014" %}</span>
+        </p>
+    </div>
+    <div class="row align-sm-up">
+        <div class="col-xs-12 col-sm-6">
+            <div class="reasons-item">
+                <img class="reasons-item-icon hidden-xs" src="{% static 'seasonalife/img/icons/gp1.png' %}">
+                <div class="reasons-item-text">
+                    <p class="reasons-item-header"><img class="reasons-item-icon visible-xs" src="{% static 'seasonalife/img/icons/gp1.png' %}"> {% trans "HOME022" %}</p>
+                    <p class="reasons-item-paragraph">{% trans "HOME023xs" %}</p>
+                </div>
+            </div>
+            <div class="reasons-item">
+                <img class="reasons-item-icon hidden-xs" src="{% static 'seasonalife/img/icons/gp2.png' %}">
+                <div class="reasons-item-text">
+                    <p class="reasons-item-header"><img class="reasons-item-icon visible-xs" src="{% static 'seasonalife/img/icons/gp2.png' %}"> {% trans "HOME024" %}</p>
+                    <p class="reasons-item-paragraph">{% trans "HOME025xs" %}</p>
+                </div>
+            </div>
+            <div class="reasons-item">
+                <img class="reasons-item-icon hidden-xs" src="{% static 'seasonalife/img/icons/gp3.png' %}">
+                <div class="reasons-item-text">
+                    <p class="reasons-item-header"><img class="reasons-item-icon visible-xs" src="{% static 'seasonalife/img/icons/gp3.png' %}"> {% trans "HOME028" %}</p>
+                    <p class="reasons-item-paragraph">{% trans "HOME029xs" %}</p>
+                </div>
+            </div>
+            <div class="transparent-separator mt-3 visible-xs"></div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 white-section">
+            <div class="blue-separator pt-2 visible-xs"></div>
+            <div class="reasons-image-header-wrapper visible-xs">
+                <p class="reasons-image-header">
+                    <span>{% trans "HOME049" %}</span>
+                </p>
+                <p class="reasons-image-tagline">
+                    <span>{% trans "HOME050" %}</span>
+                </p>
+            </div>
+            <img class="reasons-item-image" src="{% static 'seasonalife/img/computer.png' %}">
+        </div>
+    </div>
+</section>
+
+<div class="transparent-separator mt-3 hidden-xs"></div>
+<div class="transparent-separator pb-1 visible-xs"></div>
+
+<section id="about" class="container-fluid navy-section">
+    <div class="row about-wrapper">
+        <div class="triangle-inv-bg text-center">
+            <img class="triangle-inv">
+        </div>
+        <div class="about-text-wrapper-xs visible-xs">
+            <h2 class="heading-xs">{% trans "HOME031xs" %}</h2>
+            <p class="mb-3">{% trans "HOME032xs" %}</p>
+            <div class="btn btn-secondary btn-about-xs">
+                <a href="/about?p=team"><b>{% trans "FRMCTL012" %}</b></a>
+            </div>
+        </div>
+        <table class="about-text-wrapper text-center hidden-xs">
+            <tr>
+                <td class="about-table-separation-line"></td>
+                <td rowspan="2" class="about-table-header"><p class="about-header">{% trans "HOME031" %}</p></td>
+                <td class="about-table-separation-line"></td>
+            </tr>
+            <tr>
+                <td class="about-table-top-left"></td>
+                <td class="about-table-top-right"></td>
+            </tr>
+            <tr>
+                <td colspan="3" class="about-table-middle">
+                    <!--<div>{% trans "HOME032" %}</div>-->
+                    <p class=about-text>{% trans "HOME032" %}</p>
+                    <div class="btn btn-secondary">
+                        <a href="/about?p=team"><b>{% trans "FRMCTL012" %}</b></a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="about-table-bottom"></td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section id="steps" class="steps-container gray-section">
+    <div class="container">
+        <div class="blue-separator-overlay py-0 visible-xs"></div>
+        <div class="steps-text-wrapper">
+            <p class="steps-header">
+                <span class="visible-xs">{% trans "HOME015xs" %}</span>
+                <span class="hidden-xs">{% trans "HOME015" %}</span>
+            </p>
+            <div class="row">
+                <div class="col-xs-4 text-center">
+                    <div class="steps-item hover-floating-sm-up">
+                        <div class="steps-item-wrapper">
+                            <a href="/calculator">
+                                <img class="steps-item-img" src="{% static 'seasonalife/img/icons/step1.png' %}">
+                                <p class="steps-item-header">
+                                    <span class="visible-xs">{% trans "HOME017xs" %}</span>
+                                    <span class="hidden-xs">{% trans "HOME016" %}</span>
+                                </p>
+                            </a>
+                            <div class="steps-item-content hidden-xs">
+                                <hr class="steps-item-hr">
+                                <p class="steps-item-text">{% trans "HOME017" %}</p>
+                                <a class="steps-item-learn" href="/calculator">{% trans "HOME045" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <div class="steps-item hover-floating-sm-up">
+                        <div class="steps-item-wrapper">
+                            <a href="/products">
+                                <img class="steps-item-img" src="{% static 'seasonalife/img/icons/step2.png' %}">
+                                <p class="steps-item-header">
+                                    <span class="visible-xs">{% trans "HOME019xs" %}</span>
+                                    <span class="hidden-xs">{% trans "HOME018" %}</span>
+                                </p>
+                            </a>
+                            <div class="steps-item-content hidden-xs">
+                                <hr class="steps-item-hr">
+                                <p class="steps-item-text">{% trans "HOME019" %}</p>
+                                <a class="steps-item-learn" href="/products">{% trans "HOME045" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <div class="steps-item hover-floating-sm-up">
+                        <div class="steps-item-wrapper">
+                            <a href="/about?p=contact">
+                                <img class="steps-item-img" src="{% static 'seasonalife/img/icons/step3.png' %}">
+                                <p class="steps-item-header">
+                                    <span class="visible-xs">{% trans "HOME021xs" %}</span>
+                                    <span class="hidden-xs">{% trans "HOME020" %}</span>
+                                </p>
+                            </a>
+                            <div class="steps-item-content hidden-xs">
+                                <hr class="steps-item-hr">
+                                <p class="steps-item-text">{% trans "HOME021" %}</p>
+                                <a class="steps-item-learn" href="/about?p=contact">{% trans "HOME045" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block compare_product %}
+<section id="compare-product" class="hidden-xs gray-section">
+    <form action="/products/select" method="POST">
+        {% csrf_token %}
+        <div class="container-fluid" align="center">
+            <div class="compare-product-text-wrapper">
+                <p class="compare-product-text">{% trans "HOME033" %}</p>
+                <select type="text" class="text-input form-control" name="product_type">
+                    {% for product in product_settings %}
+                    {% if not product.inactive %}
+                    <option value="{{product.name}}" {% if forloop.counter == 1 %}selected{% endif %}>{% trans product.header_full as header %}{{header}}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <input class="btn btn-secondary" type="submit" value="{% trans 'FRMCTL013' %}">
+        </div>
+    </form>
+    <div class="transparent-separator pb-3"></div>
+</section>
+{% endblock compare_product %}
+
+{% block posts_news_section %}
+<section id="articles" class="container">
+    <div class="row articles-wrapper">
+        <div class="col-xs-12 col-md-6 col-md-push-6">
+            <p class="articles-wrapper-header h4">
+                <a href="/newsroom">{% trans "NEWS002" %}</a>
+            </p>
+            <div>
+                {% for post in allNews|slice:":2:" %}
+                    <div class="post-item">
+                        <div class="post-item-thumbnail">
+                            <a href="{{post.get_absolute_url}}">
+                                <img src="{% static 'newsroom/img/' %}{% minify_url post.parent.coverPhotoUrl %}" alt="{{post.heading}}">
+                            </a>
+                        </div>
+                        <div class="post-item-info">
+                            <div class="post-item-info-wrapper">
+                                <a class="post-item-title" href="{{post.get_absolute_url}}">{{post.heading}}</a>
+                                <p class="post-item-details m-t-sm">
+                                    <span>{{post.parent.postDate}} </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-md-pull-6">
+            <p class="articles-wrapper-header h4">
+                <a href="/insurance101">{% trans "INSU007" %}</a>
+            </p>
+            <div>
+                {% for post in articles|slice:":2:" %}
+                    <div class="post-item">
+                        <div class="post-item-thumbnail">
+                            <a href="{{post.get_absolute_url}}">
+                                <img src="{% static 'insurance101/img/' %}{% minify_url post.parent.coverPhotoUrl %}" alt="{{post.heading}}">
+                            </a>
+                        </div>
+                        <div class="post-item-info">
+                            <div class="post-item-info-wrapper">
+                                <a class="post-item-title" href="{{post.get_absolute_url}}">{{post.heading}}</a>
+                                <p class="post-item-details m-t-sm">
+                                    <span>{{post.parent.authorData.name}} &#x2022 {{post.parent.postDate}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock posts_news_section %}
+
+{% include "seasonalife/providers.html" %}
+
+{% endblock content%}
+
+{% block footer %}{% include "seasonalife/footer.html" %}{% endblock %}

@@ -1,0 +1,171 @@
+/* Ion.RangeSlider, Simple Skin
+// css version 2.0.3
+// © Denis Ineshin, 2014    https://github.com/IonDen
+// © guybowden, 2014        https://github.com/guybowden
+// ===================================================================================================================*/
+
+/* =====================================================================================================================
+// Skin details */
+
+.irs {
+    height: 55px;
+}
+.irs-with-grid {
+    height: 75px;
+}
+.irs-line {
+    cursor: pointer;
+    z-index: 3;
+    height: 70px; top: 0px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 16px;
+    -moz-border-radius: 16px;
+}
+    .irs-line-left {
+        height: 6px; top: 33px;
+        background: #CCC;
+        border: 1px solid #CCC;
+        border-radius: 16px;
+        -moz-border-radius: 16px;
+    }
+    .irs-line-mid {
+        height: 6px; top: 33px;
+        background: #CCC;
+        border: 1px solid #CCC;
+        border-radius: 16px;
+        -moz-border-radius: 16px;
+    }
+    .irs-line-right {
+        height: 6px; top: 33px;
+        background: #CCC;
+        border: 1px solid #CCC;
+        border-radius: 16px;
+        -moz-border-radius: 16px;
+    }
+
+.irs-bar {
+    cursor: pointer;
+    z-index: 4;
+    height: 6px;
+    top: 34px;
+    border-top: 1px solid #528FCC;
+    border-bottom: 1px solid #528FCC;
+    background: #528FCC;
+}
+    .irs-bar-edge {
+        z-index: 4;
+        height: 6px;
+        top: 34px;
+        width: 20px;
+        border: 1px solid #528FCC;
+        border-right: 0;
+        background: #528FCC;
+        border-radius: 16px 0 0 16px;
+        -moz-border-radius: 16px 0 0 16px;
+    }
+
+.irs-shadow {
+    height: 2px; top: 38px;
+    background: #000;
+    opacity: 0.3;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.lt-ie9 .irs-shadow {
+    filter: alpha(opacity=30);
+}
+
+/* The circle button */
+.irs-slider {
+    display: none;
+    z-index: 0;
+    top: 25px;
+    width: 40px; height: 0px;
+    border: 1px solid #528FCC;
+    background: #528FCC;
+    border-radius: 13px;
+    -moz-border-radius: 27px;
+    cursor: pointer;
+}
+
+.irs-slider.state_hover, .irs-slider:hover {
+    background: #FFFFFF;
+}
+
+.irs-from:before, .irs-to:before, .irs-single:before {
+    position: relative;
+    font-family: FontAwesome;
+    content: "\f0d9";
+    padding-right: 5px;
+    margin-right: 0px;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+}
+.irs-from:after, .irs-to:after, .irs-single:after {
+    position: relative;
+    font-family: FontAwesome;
+    content: "\f0da";
+    padding-left: 5px;
+    margin-left: 0px;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+}
+
+.irs-min, .irs-max {
+    visibility: visible !important;
+    color: #333;
+    font-size: 12px; line-height: 1.333;
+    text-shadow: none;
+    top: 0;
+    padding: 1px 5px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+
+.lt-ie9 .irs-min, .lt-ie9 .irs-max {
+    background: #ccc;
+}
+
+.irs-from, .irs-to, .irs-single {
+    display: inline-flex;
+    align-items: center;
+    z-index: 10;
+    color: #fff;
+    font-size: 14px;
+    text-shadow: none;
+    padding: 5px 5px;
+    top: calc(50% - 5px);
+    background: #528FCC;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+.lt-ie9 .irs-from, .lt-ie9 .irs-to, .lt-ie9 .irs-single {
+    background: #999;
+}
+
+.irs-grid {
+    z-index: 0;
+    height: 27px;
+}
+.irs-grid-pol {
+    z-index: 0;
+    opacity: 0.5;
+    background: #528FCC;
+}
+.irs-grid-pol.small {
+    z-index: 0;
+    background: #999;
+}
+
+.irs-grid-text {
+    z-index: 0;
+    bottom: 5px;
+    color: #99a4ac;
+}
+
+.irs-disabled {
+}

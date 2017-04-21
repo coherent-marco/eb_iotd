@@ -1,0 +1,87 @@
+/* ------------------------ Customized login modal -------------------------------------*/
+@media (min-width: 768px) {
+    #login_modal {
+        padding-top: 60px;
+    }
+}
+
+#login_modal {
+    & .modal-header-img {
+        width: 75px;
+        max-width: 100%;
+        border: 2px solid #75c5c6;
+        padding: 2px;
+    }
+
+    & .btn.btn-radio {
+        font-family: inherit;   /* Restore bootstrap */
+        display: inline-table;
+        font-size: 14px;
+        background-size: 30px;
+        background-position-x: 20px;
+    }
+}
+
+.auth0-wrapper, #registration {
+    & .text-input {
+        width: 90%;
+        font-weight: bold;
+    }
+
+    & #login-error {
+        font-weight: bold;
+        color: #f15c3e;
+    }
+
+    & .btn-login {
+        background-color: transparent;
+        border-color: #71C6C1;
+        color: #71C6C1;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 10px 20px;
+        border-radius: 5px!important;
+        margin: 5px;
+    }
+    
+    & .btn-login:hover,
+      .btn-login:focus,
+      .btn-login:active,
+      .btn-login.active {
+        background-color:#46AAA1;
+        border-color: #46AAA1;
+        color: white;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}
+
+
+/* Can be removed after layout.css is confirmed and style.css is gone */
+#login_modal .nav-tabs > li > a {
+    color: #337ab7;
+    font-weight: initial;
+    font-size: 14px;
+}
+#login_modal .nav-tabs > li.active > a {
+    color: #555;
+}
+
+.mt-1 {
+  margin-top: 1rem !important;
+}
+.mt-2 {
+  margin-top: 1.5rem !important;
+}
+.mt-3 {
+  margin-top: 3rem !important;
+}
+.my-1 {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+.my-3 {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
+/* End removal block */
