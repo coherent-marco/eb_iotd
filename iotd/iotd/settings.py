@@ -123,7 +123,6 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 # Use STATIC_ROOT if serving from same machine
 # Use STATICFILES_STORAGE for advanced use cases (eg CDN)
 
-LOCAL_ENV = False
 if LOCAL_ENV:
     STATIC_ROOT = os.path.join(BASE_DIR, '..', 'www', 'static')
     STATIC_URL = '/static/'
