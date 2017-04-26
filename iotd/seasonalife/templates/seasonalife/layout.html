@@ -92,7 +92,7 @@
     {% block security %}
     {% if not user.is_authenticated %}
     {% include "seasonalife/login_modal.html" %}
-    <script defer type="text/javascript" src="{% jsi18n '' %}"></script>
+{#    <script defer type="text/javascript" src="{% jsi18n '' %}"></script>#}
     <script defer type="text/javascript" src="//cdn.auth0.com/js/lock/10.7.0/lock.min.js"></script>
     <!-- build:js app/js/layout.bundle.d.js defer -->
     <script defer type="text/javascript" src="{% static 'js/lock.js' %}"></script>
